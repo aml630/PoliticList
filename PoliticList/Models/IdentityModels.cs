@@ -29,5 +29,9 @@ namespace PoliticList.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Link> Links { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Voter> Voters { get; set; }
     }
 }

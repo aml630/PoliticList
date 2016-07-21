@@ -22,3 +22,134 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.topicName {
+    font-size: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+}
+
+.topicPic {
+    text-align: center;
+    height: 200px;
+    width: auto;
+    border: 1px solid black;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.voteBox {
+    width: 1000px;
+    border: 1px solid #d1d1d1;
+    margin-bottom: 10px;
+    /*text-align: center;*/
+    min-height: 100px;
+    box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#heart {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    background-image: url("http://www.unitedpoleartists.com/wp-content/uploads/2015/08/Green-Heart.png");
+    background-size: 50px 50px;
+    height: 50px;
+    width: 50px;
+    color: white;
+    font-weight: bold;
+}
+
+.intro {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+}
+
+.tweet {
+    margin-left: 27%;
+}
+
+.imageBox {
+    margin-left: 27%;
+}
+
+.linkBox {
+    margin-left: 27%;
+}
+
+.quoteBox {
+    margin-left: 27%;
+    height: auto;
+    width: 500px;
+    border: 1px solid #e1e8ed;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+    .quoteBox:hover {
+        border: 1px solid #ccd6dd;
+    }
+
+.upvote {
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+textarea {
+    width: 900px;
+    height: 200px;
+}
+
+
+
+.linkImage {
+    height: auto;
+    width: 500px;
+    border: 1px solid #e1e8ed;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+    .linkImage:hover {
+        border: 1px solid #ccd6dd;
+    }
+
+
+
+.quoteBox p {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    font-size: 20px;
+}
+
+    .quoteBox p:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+
+.editLinkForm {
+    display: none;
+}
+
+.addLinkForm {
+    display: none;
+}
+
+.editTopicForm {
+    display: none;
+}
