@@ -25,19 +25,26 @@ textarea {
 
 
 .topicName {
-    font-size: 50px;
+    text-align: center;
+font-family: 'Alfa Slab One', 'Rockwell', serif;
+    font-size: 3.8rem;
+    margin-bottom: 1.4rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
+    transition: all 0.5s ease;
+    font-weight: 900;
+    /*color: white;*/
 }
+
 
 .topicPic {
     text-align: center;
-    height: 200px;
+    height: 400px;
     width: auto;
     border: 1px solid black;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .voteBox {
@@ -68,7 +75,6 @@ textarea {
 
 .intro {
     width: 100%;
-    color: white;
     font-size: 20px;
 }
 
@@ -152,4 +158,32 @@ textarea {
 
 .editTopicForm {
     display: none;
+}
+
+.whatHappened {
+    display: inline-flex;
+     text-align: center;
+    /*height: 400px;*/
+    width: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.whatHappened iframe {
+    width: 700px;
+    height: 200px;
+    border-radius: 15px;
+  
+}
+.whatHappened p {
+margin-right: 10px;
+text-align: left;
+  
+}
+
+.shareButtons {
+    position: fixed;
+    top:100px;
+    right: -10px;
+    width: 300px;
+
 }

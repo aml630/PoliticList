@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201607202037444_moreLinkStuff.Designer.cs">
       <DependentUpon>201607202037444_moreLinkStuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607212130233_youtube.cs" />
+    <Compile Include="Migrations\201607212130233_youtube.Designer.cs">
+      <DependentUpon>201607212130233_youtube.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -283,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607202037444_moreLinkStuff.resx">
       <DependentUpon>201607202037444_moreLinkStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607212130233_youtube.resx">
+      <DependentUpon>201607212130233_youtube.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

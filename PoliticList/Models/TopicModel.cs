@@ -17,6 +17,7 @@ namespace PoliticList.Models
         public string TopicPic { get; set; }
         public bool TopicPublished { get; set; }
         public string Intro { get; set; }
+        public string YouTube { get; set; }
         public int FbShares { get; set; }
         public int TwitShares { get; set; }
 
