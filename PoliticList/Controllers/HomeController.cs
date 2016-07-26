@@ -38,10 +38,21 @@ namespace PoliticList.Controllers
 
             var newTopic = new Topic();
             newTopic.TopicName = "exampleName";
+            newTopic.Date = DateTime.Today;
             db.Topics.Add(newTopic);
             db.SaveChanges();
 
             return RedirectToAction("Index"); 
+        }
+        public ActionResult DeleteTopic(int TopicId)
+        {
+
+            var thisTopic = db.Topics.FirstOrDefault(x => x.TopicId == TopicId);
+
+            db.Topics.Remove(thisTopic);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Topic(int id)

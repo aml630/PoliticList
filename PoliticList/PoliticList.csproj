@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201607212130233_youtube.Designer.cs">
       <DependentUpon>201607212130233_youtube.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607212216588_addDate.cs" />
+    <Compile Include="Migrations\201607212216588_addDate.Designer.cs">
+      <DependentUpon>201607212216588_addDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -207,10 +211,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\PoliticList20160719025853.pubxml" />
@@ -262,6 +266,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Topic.cshtml" />
+    <Content Include="Views\Home\_addTopic.cshtml" />
+    <Content Include="Views\Home\_deleteTopic.cshtml" />
+    <Content Include="Views\Home\_addLink.cshtml" />
+    <Content Include="Views\Home\_editLink.cshtml" />
+    <Content Include="Views\Home\_editTopic.cshtml" />
+    <Content Include="Views\Home\_shareBar.cshtml" />
+    <Content Include="Views\Home\_disqus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607212130233_youtube.resx">
       <DependentUpon>201607212130233_youtube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607212216588_addDate.resx">
+      <DependentUpon>201607212216588_addDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,14 +18,15 @@ namespace PoliticList.Controllers
             return View("Topic", "Home", topic);
         }
 
-        public ActionResult EditTopic(string TopicName, string TopicSlug, string Intro, int TopicId, string YouTube)
+        public ActionResult EditTopic(string TopicName, string TopicSlug, string Intro, int TopicId, string YouTube, string TopicPic)
         {
             var Topic = db.Topics.FirstOrDefault(x => x.TopicId == TopicId);
 
             Topic.TopicName = TopicName;
             Topic.TopicSlug = TopicSlug;
-            Topic.YouTube = YouTube;
+            Topic.TopicPic = TopicPic;
 
+            Topic.YouTube = YouTube;
             Topic.Intro = Intro;
             db.SaveChanges();
 

@@ -1,0 +1,44 @@
+﻿@if (User.IsInRole("Admin"))
+{
+
+<button class="addLink btn btn-info">Add New Link</button>
+<form class="addLinkForm" action="~/Topic/AddLink">
+    <label>Link</label>
+    <br />
+
+    <input placeholder="LinkTitle" name="LinkTitle" />
+    <br />
+
+    <input placeholder="LinkUrl" name="LinkUrl" />
+    <br />
+
+    <label>Quote</label>
+    <br />
+
+    <textarea placeholder="Quote" name="LinkQuote"></textarea>
+    <br />
+
+    <label>Twitter</label>
+    <br />
+
+    <textarea placeholder="Twitter" name="LinkTwitter"></textarea>
+    <br />
+
+    <label>Image</label>
+    <br />
+
+    <input placeholder="Image" name="LinkImage" />
+    <br />
+
+    <label>Instagram</label>
+    <br />
+
+    <textarea name="LinkInstagram"></textarea>
+
+    <br />
+
+    <input hidden name="TopicId" value="@Model.TopicId" />
+    <button>Add Link</button>
+</form>
+
+}

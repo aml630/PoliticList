@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arvo&effect=fire-animation">
+   
 
-    <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1552772168347701";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
+    @*<meta property="og:url" content="http://www.votingForward.com" />
+    <meta property="og:type" content="ITs a website" />
+    <meta property="og:title" content="Voter Title" />
+    <meta property="og:description" content="Voter Description" />
+    <meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />*@
+
+
+
 
 </head>
 <body>
+
     <div id="fb-root"></div>
     <script>
 (function(d, s, id) {
@@ -27,7 +29,8 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1552772168347701";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -42,18 +45,22 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+     
                 </ul>
+               @if (User.IsInRole("Admin"))
+               {
                 @Html.Partial("_LoginPartial")
+
+               }
+
+
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
         </footer>
     </div>
 
@@ -61,7 +68,9 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/Topic.js")
-
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 
 </body>
+
 </html>
+<title>VoteForward</title>

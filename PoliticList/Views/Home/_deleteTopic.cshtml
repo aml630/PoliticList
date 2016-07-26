@@ -1,0 +1,10 @@
+﻿@model PoliticList.Models.Topic
+
+
+    @if (User.IsInRole("Admin"))
+    {
+<form action="/Home/DeleteTopic">
+    <input name="TopicId" hidden value="@Model.TopicId" />
+    <button>Delete</button>
+</form>
+        }

@@ -1,22 +1,27 @@
 ﻿@model IEnumerable < PoliticList.Models.Topic >
 
 
-<h1>Topics</h1>
-
 @foreach (var topic in Model)
 {
-    <a class="topic" href="~/Home/Topic/@topic.TopicId">
-        <div class="topicPic" style='background-image: url("@topic.TopicPic");'>
-
-            <p class="topicName">@topic.TopicName</p>
-
+    <div class="topicPlusDate">
+        <div class="datePlusLine">
+        <p class="coverDate">@topic.Date.ToString("MMMM dd-yyyy")</p>
+        <div class="dateLine"></div>
         </div>
-    </a>
+
+        <a class="topicLine" href="~/Home/Topic/@topic.TopicId">
+            <img class="topicLineImg" src="@topic.TopicPic" />
+            <p class="coverTopicName">@topic.TopicName</p>
+        </a>
+    </div>
+
+    @Html.Partial("_deleteTopic", topic)
+
 
 }
 
+@Html.Partial("_addTopic")
 
-<form action="/Home/AddTopic">
-    <button>AddTopic</button>
-</form>
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
+<link href='https://fonts.googleapis.com/css?family=Passion+One:700&effect=shadow-multiple|3d-float' rel='stylesheet' type='text/css'>

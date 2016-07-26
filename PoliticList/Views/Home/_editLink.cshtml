@@ -1,0 +1,45 @@
+﻿@model PoliticList.Models.Link
+
+
+<form action="~/Topic/DeleteLink">
+    <input hidden name="LinkId" value="@Model.LinkId" />
+    <button class="btn btn-danger">Delete</button>
+</form>
+<button class="editLink btn btn-success">Edit Link</button>
+<form class="editLinkForm" action="~/Topic/EditLink">
+    <input hidden name="LinkId" value="@Model.LinkId" />
+    <label>Link</label>
+    <br />
+
+    <input value="@Model.LinkTitle" name="LinkTitle" />
+    <br />
+
+    <input value="@Model.LinkUrl" name="LinkUrl" />
+    <br />
+
+    <label>Quote</label>
+    <br />
+
+    <textarea placeholder="Quote" name="LinkQuote">@Model.LinkQuote</textarea>
+    <br />
+
+    <label>Twitter</label>
+    <br />
+
+    <textarea placeholder="Twitter" name="LinkTwitter">@Model.LinkTwitter</textarea>
+    <br />
+
+    <label>Image</label>
+    <br />
+
+    <input value="@Model.LinkImage" name="LinkImage" />
+    <br />
+
+    <label>Instagram</label>
+    <br />
+
+    <textarea name="LinkInstagram">@Model.LinkInstagram</textarea>
+
+    <button>Make Changes</button>
+
+</form>

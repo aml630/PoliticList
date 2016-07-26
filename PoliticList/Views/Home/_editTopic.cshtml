@@ -1,0 +1,22 @@
+﻿
+@if (User.IsInRole("Admin"))
+{
+<button class="editTopic btn btn-success">Edit Topic</button>
+<form class="editTopicForm" action="~/Topic/EditTopic">
+    <input value="@Model.TopicName" name="TopicName" />
+    <br />
+    <input placeholder="Slug" value="@Model.TopicSlug" name="TopicSlug" />
+    <br />
+    <input placeholder="Image" value="@Model.TopicPic" name="TopicPic" />
+    <br />
+    <textarea name="Intro">@Model.Intro</textarea>
+    <br />
+
+    <input placeholder="youtube" value="@Model.YouTube" name="YouTube" />
+
+    <input hidden name="TopicId" value="@Model.TopicId" />
+
+
+    <button>Change Topic Settings</button>
+</form>
+}

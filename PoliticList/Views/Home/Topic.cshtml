@@ -1,186 +1,129 @@
 ﻿@model PoliticList.Models.Topic
+<title>The Most Important Responses @Model.TopicName</title>
+<div class="row">
 
-
-<div class="shareButtons">
-    <form class="tweet">
-     
-
-        <a target="_blank" class="discuss twitter-share-button btn btn-primary btn-lg outline" href="https://twitter.com/intent/tweet?text= Best Responses To @Model.TopicName http://www.buybabble.com/" data-size="large" data-url="http://www.buybabble.com/">
-            <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/social-twitter-icon.png" height="50" wdith="50">
-            
-        </a>
+    <div class="col-md-10">
+    <p class="topicName font-effect-shadow-multiple">
+        The Most Important Responses
         <br />
-
-        <div class="fb-share-button" data-href="http://www.worksourceoregon.org/component/jsresources/category?id=198" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
-
-
-    </form>
-</div>
-
-<p class="topicName">
-    The most important responses
-    <br />
-    to
-    <br />
-    @Model.TopicName
-</p>
+        to
+        <br />
+        @Model.TopicName
+    </p>
 
 
-<div class="topicPic" style='background-image: url("@Model.TopicPic");'>
-
-</div>
-<div class="whatHappened">
-    <p class="intro">@Model.Intro</p>
-
-    <iframe src="https://www.youtube.com/embed/@Model.YouTube" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<button class="editTopic btn btn-success">Edit Topic</button>
-<form class="editTopicForm" action="~/Topic/EditTopic">
-    <input value="@Model.TopicName" name="TopicName" />
-    <br />
-    <input placeholder="Slug" value="@Model.TopicSlug" name="TopicSlug" />
-    <br />
-
-    <textarea name="Intro">@Model.Intro</textarea>
-    <br />
-
-    <input placeholder="youtube" value="@Model.YouTube" name="YouTube" />
-
-    <input hidden name="TopicId" value="@Model.TopicId" />
-
-
-    <button>Change Topic Settings</button>
-</form>
-<hr />
-
-@foreach (var link in ViewBag.Links)
-{
-    <div class="voteBox">
-
-        <form class="upvote" action="~/Topic/Upvote">
-            <input name="LinkId" hidden value="@link.LinkId" />
-            <button id="heart">
-                @link.Votes
-            </button>
-        </form>
-     
-       @if (link.LinkUrl != null && link.LinkUrl != "")
-       {
-        <div class="linkBox">
-            <a href="@link.LinkUrl"><h1>@link.LinkTitle</h1></a>
-        </div>
-       }
-
-@if (link.LinkTwitter != null && link.LinkTwitter != "")
-{
-        <div class="tweet">@Html.Raw(System.Web.HttpUtility.HtmlDecode(link.LinkTwitter))</div>
-}
-
-      @if (link.LinkImage != null && link.LinkImage != "")
-      {
-        <div class="imageBox">
-            <img class="linkImage" src="@link.LinkImage" />
-        </div>
-      }
-
-        @if (link.LinkInstagram != null && link.LinkInstagram != "")
-        {
-            @link.LinkInstagram
-        }
-
-        @if (link.LinkQuote != null && link.LinkQuote != "")
-        {
-            <div class="quoteBox">
-                <p>@link.LinkQuote</p>
-            </div>
-        }
+    <div class="topicPic" style='background-image: url("@Model.TopicPic");'>
 
     </div>
+    <div class="whatHappened">
+        <p class="intro">@Model.Intro</p>
 
-    <form action="~/Topic/DeleteLink">
-        <input hidden name="LinkId" value="@link.LinkId"/>
-        <button class="btn btn-danger">Delete</button>
-    </form>
-    <button class="editLink btn btn-success">Edit Link</button>
-    <form class="editLinkForm" action="~/Topic/EditLink">
-        <input hidden name="LinkId" value="@link.LinkId" />
-        <label>Link</label>
-        <br />
+        <iframe src="https://www.youtube.com/embed/@Model.YouTube" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-        <input value="@link.LinkTitle" name="LinkTitle" />
-        <br />
+    @Html.Partial("_editTopic")
+    <hr />
 
-        <input value="@link.LinkUrl" name="LinkUrl" />
-        <br />
+    @foreach (var link in ViewBag.Links)
+    {
+        <div class="voteBox">
 
-        <label>Quote</label>
-        <br />
+            <form class="upvote" action="~/Topic/Upvote">
+                <input name="LinkId" hidden value="@link.LinkId" />
+                <button id="heart">
+                    @link.Votes
+                </button>
+            </form>
 
-        <textarea placeholder="Quote" name="LinkQuote">@link.LinkQuote</textarea>
-        <br />
+            @if (link.LinkUrl != null && link.LinkUrl != "")
+            {
+                <div class="linkBox">
+                    <a href="@link.LinkUrl"><h1>@link.LinkTitle</h1></a>
+                </div>
+            }
 
-        <label>Twitter</label>
-        <br />
+            @if (link.LinkTwitter != null && link.LinkTwitter != "")
+            {
+                <div class="tweet">@Html.Raw(System.Web.HttpUtility.HtmlDecode(link.LinkTwitter))</div>
+            }
 
-        <textarea placeholder="Twitter" name="LinkTwitter">@link.LinkTwitter</textarea>
-        <br />
+            @if (link.LinkImage != null && link.LinkImage != "")
+            {
+                <div class="imageBox">
+                    <img class="linkImage" src="@link.LinkImage" />
+                </div>
+            }
 
-        <label>Image</label>
-        <br />
+            @if (link.LinkInstagram != null && link.LinkInstagram != "")
+            {
+                @link.LinkInstagram
+            }
 
-        <input value="@link.LinkImage" name="LinkImage" />
-        <br />
+            @if (link.LinkQuote != null && link.LinkQuote != "")
+            {
+                <div class="quoteBox">
+                    <p>@link.LinkQuote</p>
+                </div>
+            }
 
-        <label>Instagram</label>
-        <br />
+        </div>
+        if (User.IsInRole("Admin"))
+        {
+            <form action="~/Topic/DeleteLink">
+                <input hidden name="LinkId" value="@link.LinkId" />
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            <button class="editLink btn btn-success">Edit Link</button>
+            <form class="editLinkForm" action="~/Topic/EditLink">
+                <input hidden name="LinkId" value="@link.LinkId" />
+                <label>Link</label>
+                <br />
 
-        <textarea name="LinkInstagram">@link.LinkInstagram</textarea>
+                <input value="@link.LinkTitle" name="LinkTitle" />
+                <br />
 
-        <button>Make Changes</button>
+                <input value="@link.LinkUrl" name="LinkUrl" />
+                <br />
 
-    </form>
-    
-}
+                <label>Quote</label>
+                <br />
+
+                <textarea placeholder="Quote" name="LinkQuote">@link.LinkQuote</textarea>
+                <br />
+
+                <label>Twitter</label>
+                <br />
+
+                <textarea placeholder="Twitter" name="LinkTwitter">@link.LinkTwitter</textarea>
+                <br />
+
+                <label>Image</label>
+                <br />
+
+                <input value="@link.LinkImage" name="LinkImage" />
+                <br />
+
+                <label>Instagram</label>
+                <br />
+
+                <textarea name="LinkInstagram">@link.LinkInstagram</textarea>
+
+                <button>Make Changes</button>
+
+            </form>
+        }
+    }
+
+        @*@Html.Partial("_disqus")*@
 
 
-<button class="addLink btn btn-info">Add New Link</button>
-<form class="addLinkForm" action="~/Topic/AddLink">
-    <label>Link</label>
-    <br />
+    </div>
+    <div class="col-md-1">
+        @Html.Partial("_shareBar")
+    </div>
 
-    <input placeholder="LinkTitle" name="LinkTitle" />
-    <br />
+</div>
+@Html.Partial("_addLink")
 
-    <input placeholder="LinkUrl" name="LinkUrl" />
-    <br />
 
-    <label>Quote</label>
-    <br />
-
-    <textarea placeholder="Quote" name="LinkQuote"></textarea>
-    <br />
-
-    <label>Twitter</label>
-    <br />
-
-    <textarea placeholder="Twitter" name="LinkTwitter"></textarea>
-    <br />
-
-    <label>Image</label>
-    <br />
-
-    <input placeholder="Image" name="LinkImage"/>
-    <br />
-
-    <label>Instagram</label>
-    <br />
-
-    <textarea name="LinkInstagram"></textarea>
-
-    <br />
-
-    <input hidden name="TopicId" value="@Model.TopicId" />
-    <button>Add Link</button>
-</form>
-
+<link href='https://fonts.googleapis.com/css?family=Passion+One:700&effect=shadow-multiple|3d-float' rel='stylesheet' type='text/css'>
