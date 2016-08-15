@@ -1,10 +1,55 @@
-﻿<title>Your Website Title</title>
-<div class="shareBar">
+﻿@*<div class="shareBar">
     <div class="fb-share-button"
          data-href="http://www.votingforward.com"
          data-layout="button_count"
-         size="large">
-        
+         size="large">  
     </div>
+ </div>*@
+<div class="newListTitle font-effect-shadow-multiple">
+    <h3>News List</h3>
+</div>
+<div class="newListColumn">
+
+@foreach (var link in ViewBag.NewsLinks)
+{
+    <div class="linkDiv">
+   <a class="newsLink" href="@link.NewsLinkUrl">@link.NewsLinkTitle 
+        <br />
+       <span class="newsSource">-@link.NewsLinkSource</span>
+        </a>
         
-    </div>
+        </div>
+if (User.IsInRole("Admin"))
+{
+    <form action="/Topic/DeleteNewsLink">
+      
+        <input hidden name="NewsLinkId" value="@link.NewsLinkId" />
+
+
+        <button class="btn btn-danger">Delete</button>
+    </form>
+}
+   <div class="line"></div>
+
+
+}
+   
+
+</div>
+
+
+@if (User.IsInRole("Admin"))
+{
+    <form action="/Topic/AddNewsLink">
+        <textarea class="bigInput" name="LinkTitle" placeholder="Title"></textarea>
+        <input class="bigInput" name="LinkUrl" placeholder="Url"/>
+        <input name="LinkSource" placeholder="Source" />
+
+        <input hidden name="TopicId" value="@Model.TopicId" />
+
+
+        <button class="btn btn-success">Add NEWS</button>
+    </form>
+}
+
+@Html.Partial("_addLink")

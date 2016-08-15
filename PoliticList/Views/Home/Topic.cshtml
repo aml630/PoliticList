@@ -1,25 +1,27 @@
 ﻿@model PoliticList.Models.Topic
 <title>The Most Important Responses @Model.TopicName</title>
 <div class="row">
-
-    <div class="col-md-10">
     <p class="topicName font-effect-shadow-multiple">
-        The Most Important Responses
+        The Best Responses
         <br />
         to
         <br />
         @Model.TopicName
     </p>
+    @*<div class="topicPic" style='background-image: url("@Model.TopicPic");'>
 
-
-    <div class="topicPic" style='background-image: url("@Model.TopicPic");'>
-
-    </div>
+        </div>*@
     <div class="whatHappened">
         <p class="intro">@Model.Intro</p>
 
-        <iframe src="https://www.youtube.com/embed/@Model.YouTube" frameborder="0" allowfullscreen></iframe>
+        @*<iframe src="https://www.youtube.com/embed/@Model.YouTube" frameborder="0" allowfullscreen></iframe>*@
+        <br />
+
     </div>
+@Html.Partial("_shareStuff")
+    <div class="col-md-10">
+    
+
 
     @Html.Partial("_editTopic")
     <hr />
@@ -113,12 +115,16 @@
             </form>
         }
     }
+        @Html.Partial("_shareStuff")
+
+
+
 
         @*@Html.Partial("_disqus")*@
 
 
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
         @Html.Partial("_shareBar")
     </div>
 

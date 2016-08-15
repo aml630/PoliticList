@@ -14,6 +14,18 @@ namespace PoliticList
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                 name: "Home",
+                 url: "",
+                 defaults: new { controller = "Home", action = "Index" }
+                );
+
+            routes.MapRoute(
+               name: "Topic",
+               url: "{slug}",
+               defaults: new { controller = "Home", action = "Topic"}
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -24,6 +24,8 @@ namespace PoliticList.Models
         public int TwitShares { get; set; }
 
         public virtual ICollection<Link> Links { get; set; }
+        public virtual ICollection<NewsLink> NewsLinks { get; set; }
+
 
 
     }

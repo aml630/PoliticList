@@ -31,7 +31,7 @@ textarea {
     margin-bottom: 1.4rem;
     margin-left: auto;
     margin-right: auto;
-    margin-top: auto;
+    margin-top: 20px;
     transition: all 0.5s ease;
     font-weight: 900;
     line-height: .8;
@@ -39,12 +39,12 @@ textarea {
 }
 
 .coverTopicName {
-    text-align: center;
+    /*text-align: center;*/
     font-family: 'Passion One', cursive;
     font-size: 3.8rem;
-    margin-bottom: 1.4rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 1.7rem;
+    margin-left: 20px;
+    /*margin-right: auto;*/
     margin-top: auto;
     transition: all 0.5s ease;
     font-weight: 900;
@@ -61,6 +61,12 @@ textarea {
     margin-top: 20px;
 }
 
+#twitter-widget-0
+{
+          max-height:100vh;
+
+}
+
 
 
 #heart {
@@ -70,7 +76,7 @@ textarea {
     cursor: pointer;
     overflow: hidden;
     outline: none;
-    background-image: url("http://www.unitedpoleartists.com/wp-content/uploads/2015/08/Green-Heart.png");
+    background-image: url("http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425");
     background-size: 50px 50px;
     height: 50px;
     width: 50px;
@@ -81,6 +87,7 @@ textarea {
 .intro {
     width: 100%;
     font-size: 20px;
+    line-height: 1.8em;
 }
 
 .tweet {
@@ -201,12 +208,33 @@ text-align: left;
     border: 1px solid #d1d1d1;
     width: 100%;
     box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+    min-height: 70px;
+}
+.navbar-brand:hover {
+    color: #77DD77 !important;
+    transition: 1s;
+    text-shadow: 1px 1px #77DD77;
+}
+.navbar-brand {
+    transition: 1s;
+    float: left;
+    padding: 15px 15px;
+    font-size: 28px;
+    line-height: 20px;
 }
 
 .coverDate {
     font-family: 'Lobster', cursive;
     font-size: 45px;
     font-style: italic;
+    width: 285px;
+}
+.dateLine {
+    border-bottom:solid 1px #e6e6e6;
+    width: 50%;
+    margin-bottom: 40px;
+    margin-left: 30px;
+    float: right;
 }
 .topicLineImg{
     height: 60px;
@@ -223,12 +251,14 @@ text-align: left;
     margin-bottom: 50px;
 }
 
-.dateLine {
-    border-bottom:solid 1px #e6e6e6;
-    width: 70%;
-    margin-bottom: 40px;
-    margin-left: 30px;
-    float: right;
+.topicIntro {
+    width: 900px !important;
+    height: 300px !important;
+    max-width: 1000px;
+}
+
+.bigInput {
+    height: 300px !important;
 }
 
 .datePlusLine {
@@ -262,6 +292,11 @@ text-align: left;
     width: 100px;
 }
 
+.shareStuff {
+    display: flex;
+    justify-content: space-around;
+}
+
 .shareBar {
     position: fixed;
     top: 100px;
@@ -271,6 +306,41 @@ text-align: left;
     transition: opacity 1s ease-out;
 }
 
+.newListTitle{
+    margin-top: -15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.newListColumn {
+    border: 1px solid #d1d1d1;
+    box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+     height:auto;
+          /*height:80vh;*/
+
+     margin-top: 10px;
+
+}
+
+
+
+.newsSource {
+    color: #006621 !important;
+    font-weight: bold;
+}
+
+.line {
+    border-bottom: 1px solid #d1d1d1;
+    height: 10px;
+    width: 100%;
+    
+ 
+}
+.linkDiv {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
 @media (max-width: 984px) {
   .shareBar {
     display: none;

@@ -11,9 +11,9 @@ namespace PoliticList.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Topic
-        public ActionResult Topic(int id)
+        public ActionResult Topic(string slug)
         {
-            var topic = db.Topics.FirstOrDefault(x => x.TopicId == id);
+            var topic = db.Topics.FirstOrDefault(x => x.TopicSlug == slug);
 
             return View("Topic", "Home", topic);
         }
@@ -30,7 +30,7 @@ namespace PoliticList.Controllers
             Topic.Intro = Intro;
             db.SaveChanges();
 
-            return RedirectToAction("Topic","Home", new { id = TopicId });
+            return RedirectToAction("Topic", "Home", new { slug = Topic.TopicSlug });
         }
 
         [ValidateInput(false)]
@@ -50,8 +50,30 @@ namespace PoliticList.Controllers
             db.SaveChanges();
 
 
-            return RedirectToAction("Topic", "Home", new { id = newLink.TopicId});
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == newLink.TopicId);
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
         }
+
+        public ActionResult AddNewsLink(string LinkTitle, string LinkUrl, string LinkSource, int TopicId)
+        {
+            var newLink = new NewsLink();
+            newLink.NewsLinkTitle = LinkTitle;
+            newLink.NewsLinkUrl = LinkUrl;
+            newLink.NewsLinkSource = LinkSource;
+
+            newLink.TopicId = TopicId;
+            db.NewsLinks.Add(newLink);
+            db.SaveChanges();
+
+
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == newLink.TopicId);
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
+        }
+
+
+
         [ValidateInput(false)]
         public ActionResult EditLink(string LinkTitle, string LinkUrl, int LinkId, string LinkTwitter, string LinkImage, string LinkInstagram, string LinkQuote)
         {
@@ -66,7 +88,9 @@ namespace PoliticList.Controllers
             db.SaveChanges();
 
 
-            return RedirectToAction("Topic", "Home", new { id = newLink.TopicId });
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == newLink.TopicId);
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
         }
         private string GetUserIP()
         {
@@ -88,7 +112,7 @@ namespace PoliticList.Controllers
             var alreadyVoted = db.Voters.FirstOrDefault(voter => voter.VoterIPAddress == thisIp && voter.ArticleSegmentId == thisLink.LinkId);
 
 
-            if (alreadyVoted == null)
+            if (alreadyVoted == null || alreadyVoted.VoterIPAddress == "::1")
             {
                 var newVote = new Voter();
                 newVote.VoterIPAddress = thisIp;
@@ -100,7 +124,9 @@ namespace PoliticList.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Topic", "Home", new { id = thisLink.TopicId });
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == thisLink.TopicId);
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
         }
 
         public ActionResult DeleteLink(int LinkId)
@@ -113,7 +139,24 @@ namespace PoliticList.Controllers
             db.Links.Remove(thisLink);
             db.SaveChanges();
 
-            return RedirectToAction("Topic", "Home", new { id = thisLink.TopicId });
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == thisLink.TopicId);
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
+        }
+
+        public ActionResult DeleteNewsLink(int NewsLinkId)
+        {
+
+        
+
+            var thisLink = db.NewsLinks.FirstOrDefault(x => x.NewsLinkId == NewsLinkId);
+
+            db.NewsLinks.Remove(thisLink);
+            db.SaveChanges();
+
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == thisLink.TopicId);
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
         }
 
     }

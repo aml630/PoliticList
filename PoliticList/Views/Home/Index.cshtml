@@ -1,25 +1,54 @@
 ﻿@model IEnumerable < PoliticList.Models.Topic >
 
+<div class="col-md-9">
+    @foreach (var topic in Model)
+    {
+        if (topic.TopicPublished == true || User.IsInRole("Admin"))
+        {
+            <div class="topicPlusDate">
+                <div class="datePlusLine">
+                    <p class="coverDate">@topic.Date.ToString("MMMM dd-yyyy")</p>
+                    <div class="dateLine"></div>
+                </div>
 
-@foreach (var topic in Model)
-{
-    <div class="topicPlusDate">
-        <div class="datePlusLine">
-        <p class="coverDate">@topic.Date.ToString("MMMM dd-yyyy")</p>
-        <div class="dateLine"></div>
-        </div>
+                <a class="topicLine" href="~/@topic.TopicSlug">
+                    @*<img class="topicLineImg" src="@topic.TopicPic" />*@
+                    <p class="coverTopicName">@topic.TopicName</p>
+                </a>
+            </div>
+        }
 
-        <a class="topicLine" href="~/Home/Topic/@topic.TopicId">
-            <img class="topicLineImg" src="@topic.TopicPic" />
-            <p class="coverTopicName">@topic.TopicName</p>
+
+        @Html.Partial("_deleteTopic", topic)
+
+        if (User.IsInRole("Admin"))
+        {
+            if (topic.TopicPublished == true)
+            {
+                <form action="~/Home/UnPublishTopic">
+                    <input name="TopicId" hidden value="@topic.TopicId" />
+                    <button class="btn btn-danger">Un-Publish</button>
+                </form>
+            }
+            else
+            {
+                <form action="~/Home/PublishTopic">
+                    <input name="TopicId" hidden value="@topic.TopicId" />
+
+                    <button class="btn btn-info">Publish</button>
+                </form>
+            }
+        }
+
+    }
+</div>
+<div class="col-md-3">
+    <div class="frontPageTwitter">
+        <a class="twitter-timeline"
+           href="https://twitter.com/voting_forward">
         </a>
     </div>
-
-    @Html.Partial("_deleteTopic", topic)
-
-
-}
-
+</div>
 @Html.Partial("_addTopic")
 
 <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>

@@ -38,6 +38,8 @@ namespace PoliticList.Controllers
 
             var newTopic = new Topic();
             newTopic.TopicName = "exampleName";
+            newTopic.TopicSlug = "ExampleSlug";
+
             newTopic.Date = DateTime.Today;
             db.Topics.Add(newTopic);
             db.SaveChanges();
@@ -54,12 +56,34 @@ namespace PoliticList.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult Topic(int id)
+        public ActionResult PublishTopic(int TopicId)
         {
-            var topic = db.Topics.FirstOrDefault(x => x.TopicId == id);
+
+            var thisTopic = db.Topics.FirstOrDefault(x => x.TopicId == TopicId);
+            thisTopic.TopicPublished = true;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult UnPublishTopic(int TopicId)
+        {
+
+            var thisTopic = db.Topics.FirstOrDefault(x => x.TopicId == TopicId);
+            thisTopic.TopicPublished = false;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
+
+        public ActionResult Topic(string slug)
+        {
+            var topic = db.Topics.FirstOrDefault(x => x.TopicSlug == slug);
 
             ViewBag.Links = db.Links.Where(x => x.TopicId == topic.TopicId).OrderByDescending(x => x.Votes);
+            ViewBag.NewsLinks = db.NewsLinks.Where(x => x.TopicId == topic.TopicId);
+
 
             return View("Topic", topic);
         }

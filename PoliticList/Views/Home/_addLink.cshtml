@@ -1,7 +1,7 @@
 ﻿@if (User.IsInRole("Admin"))
 {
 
-<button class="addLink btn btn-info">Add New Link</button>
+<button class="addLink btn btn-info">Add LINK</button>
 <form class="addLinkForm" action="~/Topic/AddLink">
     <label>Link</label>
     <br />
@@ -38,7 +38,7 @@
     <br />
 
     <input hidden name="TopicId" value="@Model.TopicId" />
-    <button>Add Link</button>
+    <button>Add LINK</button>
 </form>
 
 }

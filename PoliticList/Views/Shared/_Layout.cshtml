@@ -6,18 +6,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arvo&effect=fire-animation">
-   
-
-
-    @*<meta property="og:url" content="http://www.votingForward.com" />
-    <meta property="og:type" content="ITs a website" />
-    <meta property="og:title" content="Voter Title" />
-    <meta property="og:description" content="Voter Description" />
-    <meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />*@
-
-
-
-
+  
 </head>
 <body>
 
@@ -27,10 +16,9 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1552772168347701";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=616061405226499";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-    </script>
+}(document, 'script', 'facebook-jssdk'));</script>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -40,11 +28,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("PoliticLink", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("VotingForward", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
      
                 </ul>
                @if (User.IsInRole("Admin"))

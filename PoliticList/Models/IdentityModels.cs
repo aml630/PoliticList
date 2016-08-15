@@ -31,6 +31,8 @@ namespace PoliticList.Models
         }
 
         public DbSet<Link> Links { get; set; }
+        public DbSet<NewsLink> NewsLinks { get; set; }
+
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Voter> Voters { get; set; }
     }
