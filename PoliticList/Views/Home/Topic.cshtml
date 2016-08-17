@@ -2,24 +2,21 @@
 <title>The Most Important Responses @Model.TopicName</title>
 <div class="row">
     <p class="topicName font-effect-shadow-multiple">
-        The Best Responses
+        @*The Best Responses
         <br />
         to
         <br />
-        @Model.TopicName
+        @Model.TopicName*@
+        @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.TopicName))
     </p>
-    @*<div class="topicPic" style='background-image: url("@Model.TopicPic");'>
 
-        </div>*@
     <div class="whatHappened">
         <p class="intro">@Model.Intro</p>
-
-        @*<iframe src="https://www.youtube.com/embed/@Model.YouTube" frameborder="0" allowfullscreen></iframe>*@
         <br />
 
     </div>
 @Html.Partial("_shareStuff")
-    <div class="col-md-10">
+    <div class="col-md-12">
     
 
 
@@ -28,6 +25,8 @@
 
     @foreach (var link in ViewBag.Links)
     {
+        if(link.Published != false)
+        {
         <div class="voteBox">
 
             <form class="upvote" action="~/Topic/Upvote">
@@ -37,11 +36,24 @@
                 </button>
             </form>
 
+            @if (link.SectionTitle != null && link.SectionTitle != "")
+            {
+                <div class="mainPointBox">
+                    <h3>@link.SectionTitle<a href='@string.Format("https://twitter.com/intent/tweet?text={0}{1}", link.SectionTitle+ " ", Request.Url.AbsoluteUri)'><img class="tweetPoint" height="30" width="30 " src="https://cdn2.iconfinder.com/data/icons/social-18/512/Twitter-2-128.png" /></a></h3>
+                </div>
+            }
             @if (link.LinkUrl != null && link.LinkUrl != "")
             {
+                <hr />
                 <div class="linkBox">
-                    <a href="@link.LinkUrl"><h1>@link.LinkTitle</h1></a>
+                    <span>Source: </span><a class="sourceLink" href="@link.LinkUrl">@link.LinkTitle</a>
                 </div>
+                <hr />
+
+            }
+            @if (link.LinkExplain != null && link.LinkExplain != "")
+            {
+                <p class="detailedExplain">@link.LinkExplain</p>
             }
 
             @if (link.LinkTwitter != null && link.LinkTwitter != "")
@@ -77,14 +89,21 @@
             </form>
             <button class="editLink btn btn-success">Edit Link</button>
             <form class="editLinkForm" action="~/Topic/EditLink">
+                <button class="btn btn-success">Make Changes</button>
+
                 <input hidden name="LinkId" value="@link.LinkId" />
                 <label>Link</label>
                 <br />
 
-                <input value="@link.LinkTitle" name="LinkTitle" />
+                <input placeholder="title"  value="@link.LinkTitle" name="LinkTitle" />
                 <br />
 
-                <input value="@link.LinkUrl" name="LinkUrl" />
+                <input placeholder="url" value="@link.LinkUrl" name="LinkUrl" />
+                <br />
+             
+                <textarea name="SectionTitle">@link.SectionTitle</textarea>
+                <br />
+                <textarea name="LinkExplain">@link.LinkExplain</textarea>
                 <br />
 
                 <label>Quote</label>
@@ -110,11 +129,44 @@
 
                 <textarea name="LinkInstagram">@link.LinkInstagram</textarea>
 
-                <button>Make Changes</button>
 
             </form>
+            }
+        }
+        else
+        {
+            if (User.IsInRole("Admin") || (Html.Action("GetUserIP", "Topic")).ToString() == link.newPosterIp)
+            {
+                 <div class="voteBox">
+
+            <form class="upvote" action="~/Topic/Upvote">
+                <input name="LinkId" hidden value="@link.LinkId" />
+                <button id="heart">
+                    @link.Votes
+                </button>
+            </form>
+
+                     @if (link.SectionTitle != null && link.SectionTitle != "")
+                     {
+                         <div class="mainPointBox">
+                             <h3>@link.SectionTitle<a href='@string.Format("https://twitter.com/intent/tweet?text={0}{1}", link.SectionTitle+ " ", Request.Url.AbsoluteUri)'><img class="tweetPoint" height="30" width="30 " src="https://cdn2.iconfinder.com/data/icons/social-18/512/Twitter-2-128.png" /></a></h3>
+                         </div>
+                     }
+                     @if (link.LinkUrl != null && link.LinkUrl != "")
+                     {
+                         <hr />
+                         <div class="linkBox">
+                             <span>Source: </span><a class="sourceLink" href="@link.LinkUrl">@link.LinkTitle</a>
+                         </div>
+                         <hr />
+
+                     }
+                </div>
+            }
         }
     }
+
+
         @Html.Partial("_shareStuff")
 
 
@@ -124,12 +176,30 @@
 
 
     </div>
-    <div class="col-md-2">
+    @*<div class="col-md-2">
         @Html.Partial("_shareBar")
-    </div>
+    </div>*@
 
 </div>
 @Html.Partial("_addLink")
+<div class="userAdd">
+    <h3>Did we forget one of your favorites? Add it below!</h3>
+    <form action="~/Topic/UserAddLink">
+        <input name="TopicId" hidden value="@Model.TopicId" />
+        <textarea required class="form-control" name="Comment" placeholder="Your Comment"></textarea>
+        <br />
+        <textarea required class="form-control" name="Source" placeholder="Your Source URL"></textarea>
+        <br />
+
+        <textarea class="form-control" name="SourceTitle" placeholder="Optional: Your Source Article Title"></textarea>
+        @*<textarea name="Author" placeholder="Optional: Your Name"></textarea>
+            <textarea name="Website" placeholder="Optional: Your Website"></textarea>*@
+
+        <br />
 
 
+        <button class="btn btn-success">Add To The List!</button>
+
+    </form>
+</div>
 <link href='https://fonts.googleapis.com/css?family=Passion+One:700&effect=shadow-multiple|3d-float' rel='stylesheet' type='text/css'>

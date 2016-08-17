@@ -1,52 +1,142 @@
 ﻿@model IEnumerable < PoliticList.Models.Topic >
-
-<div class="col-md-9">
-    @foreach (var topic in Model)
-    {
-        if (topic.TopicPublished == true || User.IsInRole("Admin"))
-        {
-            <div class="topicPlusDate">
-                <div class="datePlusLine">
-                    <p class="coverDate">@topic.Date.ToString("MMMM dd-yyyy")</p>
-                    <div class="dateLine"></div>
-                </div>
-
-                <a class="topicLine" href="~/@topic.TopicSlug">
-                    @*<img class="topicLineImg" src="@topic.TopicPic" />*@
-                    <p class="coverTopicName">@topic.TopicName</p>
-                </a>
-            </div>
-        }
-
-
-        @Html.Partial("_deleteTopic", topic)
-
-        if (User.IsInRole("Admin"))
-        {
-            if (topic.TopicPublished == true)
-            {
-                <form action="~/Home/UnPublishTopic">
-                    <input name="TopicId" hidden value="@topic.TopicId" />
-                    <button class="btn btn-danger">Un-Publish</button>
-                </form>
-            }
-            else
-            {
-                <form action="~/Home/PublishTopic">
-                    <input name="TopicId" hidden value="@topic.TopicId" />
-
-                    <button class="btn btn-info">Publish</button>
-                </form>
-            }
-        }
-
-    }
+<div class="mainHeader">
+    <h2>Top News Stories Of The Day</h2>
+    <p>
+        Click <img class="headerArrow"src="http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425" />To Vote For Your Favorites!
+    </p>
 </div>
-<div class="col-md-3">
-    <div class="frontPageTwitter">
-        <a class="twitter-timeline"
-           href="https://twitter.com/voting_forward">
-        </a>
+
+
+<div class="col-md-6">
+    <div class="hotNews">
+
+        <h1 class="columnTitle">Hot Off The Press</h1>
+
+        @*<div class="changeButton">
+            <p>Most Votes</p>
+        </div>*@
+
+
+        @if (ViewBag.TempLinks != null)
+        {
+
+            foreach (var link in ViewBag.TempLinks)
+            {
+                <div class="mainPageLink">
+
+                    @if ((Html.Action("AlreadyVoted", "Home", new { FeedLinkId = link.FeedLinkId })).ToString() == "true")
+                    {
+                        <div class="upvote">
+                            <button class="frontHeartVoted">
+                                @link.Votes
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <form class="upvote" action="~/Home/StoryUpvote">
+                            <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
+                            <button class="frontHeart">
+                                @link.Votes
+                            </button>
+                        </form>
+                    }
+                    <img class="publisherImg" src="@link.FeedLinkPic" />
+
+                    <div class="linkPlusDate">
+
+                        <a class="feedLink" href="@link.FeedLinkUrl">
+                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(link.FeedLinkTitle))
+                        </a>
+                        <p class="publishDate">@link.FeedLinkTime </p>
+                    </div>
+                </div>
+                <hr />
+
+            }
+        }
+        </div>
+    @*<div class="mostVotes">
+        <h1 class="columnTitle">Most Votes</h1>
+
+        <div class="changeButton">
+            <p>Hot Off The Press</p>
+        </div>
+        @if (ViewBag.VoteLinks != null)
+        {
+            foreach (var link in ViewBag.VoteLinks)
+            {
+                <div class="mainPageLink">
+
+                    <form class="upvote" action="~/Home/StoryUpvote">
+                        <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
+                        <button class="frontHeart">
+                            @link.Votes
+                        </button>
+                    </form>
+                    <img class="publisherImg" src="@link.FeedLinkPic" />
+
+                    <div class="linkPlusDate">
+
+                        <a class="feedLink" href="@link.FeedLinkUrl">
+                            @link.FeedLinkTitle
+                        </a>
+                        <p class="publishDate">@link.FeedLinkTime </p>
+                    </div>
+
+                </div>
+                <hr />
+
+            }
+        }
+    </div>*@
+    </div>
+<div class="col-md-6">
+    
+    <div class="mostVotes">
+        <h1 class="columnTitle">Most Votes</h1>
+
+        @*<div class="changeButton">
+            <p>Hot Off The Press</p>
+        </div>*@
+        @if (ViewBag.VoteLinks != null)
+        {
+            foreach (var link in ViewBag.VoteLinks)
+            {
+                <div class="mainPageLink">
+
+                    @if ((Html.Action("AlreadyVoted", "Home", new { FeedLinkId = link.FeedLinkId })).ToString() == "true")
+                    {
+                        <div class="upvote">
+                            <button class="frontHeartVoted">
+                                @link.Votes
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <form class="upvote" action="~/Home/StoryUpvote">
+                            <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
+                            <button class="frontHeart">
+                                @link.Votes
+                            </button>
+                        </form>
+                    }
+                    <img class="publisherImg" src="@link.FeedLinkPic" />
+
+                    <div class="linkPlusDate">
+
+                        <a class="feedLink" href="@link.FeedLinkUrl">
+                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(link.FeedLinkTitle))
+                        </a>
+                        <p class="publishDate">@link.FeedLinkTime </p>
+                    </div>
+
+                </div>
+                <hr />
+
+            }
+        }
     </div>
 </div>
 @Html.Partial("_addTopic")

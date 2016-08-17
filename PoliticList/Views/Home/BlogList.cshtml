@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PoliticList.Models.Topic>
+
+<div class="col-md-9">
+    @foreach (var topic in Model)
+    {
+        if (topic.TopicPublished == true || User.IsInRole("Admin"))
+        {
+            <div class="topicPlusDate">
+                <div class="datePlusLine">
+                    <p class="coverDate">@topic.Date.ToString("MMMM dd-yyyy")</p>
+                    <div class="dateLine"></div>
+                </div>
+                <div class="topicLine" >
+                    <a href="~/@topic.TopicSlug">
+                        @*<img class="topicLineImg" src="@topic.TopicPic" />*@
+                        <p class="coverTopicName">@Html.Raw(System.Web.HttpUtility.HtmlDecode(topic.TopicName))</p>
+                    </a>
+                </div>
+            </div>
+        }
+
+
+        @Html.Partial("_deleteTopic", topic)
+
+        if (User.IsInRole("Admin"))
+        {
+            if (topic.TopicPublished == true)
+            {
+                <form action="~/Home/UnPublishTopic">
+                    <input name="TopicId" hidden value="@topic.TopicId" />
+                    <button class="btn btn-danger">Un-Publish</button>
+                </form>
+            }
+            else
+            {
+                <form action="~/Home/PublishTopic">
+                    <input name="TopicId" hidden value="@topic.TopicId" />
+
+                    <button class="btn btn-info">Publish</button>
+                </form>
+            }
+        }
+
+    }
+
+   
+    @if (ViewBag.TempLinks != null)
+    {
+        foreach (var link in ViewBag.TempLinks)
+        {
+            <p>@link.LinkTitle</p>
+        }
+    }
+
+
+
+</div>
+<div class="col-md-3">
+    <div class="frontPageTwitter">
+        <a class="twitter-timeline"
+           href="https://twitter.com/voting_forward">
+        </a>
+    </div>
+</div>
+@Html.Partial("_addTopic")
+
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Passion+One:700&effect=shadow-multiple|3d-float' rel='stylesheet' type='text/css'>

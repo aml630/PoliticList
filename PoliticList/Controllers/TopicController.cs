@@ -17,7 +17,7 @@ namespace PoliticList.Controllers
 
             return View("Topic", "Home", topic);
         }
-
+        [ValidateInput(false)]
         public ActionResult EditTopic(string TopicName, string TopicSlug, string Intro, int TopicId, string YouTube, string TopicPic)
         {
             var Topic = db.Topics.FirstOrDefault(x => x.TopicId == TopicId);
@@ -44,6 +44,8 @@ namespace PoliticList.Controllers
             newLink.LinkImage = LinkImage;
             newLink.LinkInstagram = LinkInstagram;
             newLink.LinkQuote = LinkQuote;
+            newLink.Published = true;
+
 
 
             db.Links.Add(newLink);
@@ -54,6 +56,25 @@ namespace PoliticList.Controllers
 
             return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
         }
+        public ActionResult UserAddLink(string Comment, string Source, string SourceTitle, int TopicId)
+        {
+            var userLink = new Link();
+            userLink.LinkTitle = SourceTitle;
+            userLink.LinkUrl = Source;
+            userLink.SectionTitle = Comment;
+            userLink.TopicId = TopicId;
+            userLink.Published = false;
+            userLink.newPosterIp = GetUserIP();
+            var thisTopic = db.Topics.FirstOrDefault(topic => topic.TopicId == userLink.TopicId);
+
+            db.Links.Add(userLink);
+            db.SaveChanges();
+
+
+            return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
+
+        }
+
 
         public ActionResult AddNewsLink(string LinkTitle, string LinkUrl, string LinkSource, int TopicId)
         {
@@ -73,17 +94,21 @@ namespace PoliticList.Controllers
         }
 
 
-
         [ValidateInput(false)]
-        public ActionResult EditLink(string LinkTitle, string LinkUrl, int LinkId, string LinkTwitter, string LinkImage, string LinkInstagram, string LinkQuote)
+        public ActionResult EditLink(string LinkTitle, string LinkUrl, int LinkId, string LinkTwitter, string LinkImage, string LinkInstagram, string LinkQuote, string LinkExplain, string SectionTitle)
         {
             var newLink = db.Links.FirstOrDefault(x => x.LinkId == LinkId);
+
             newLink.LinkTitle = LinkTitle;
             newLink.LinkUrl = LinkUrl;
             newLink.LinkTwitter = LinkTwitter;
             newLink.LinkImage = LinkImage;
             newLink.LinkInstagram = LinkInstagram;
             newLink.LinkQuote = LinkQuote;
+            newLink.LinkExplain = LinkExplain;
+            newLink.SectionTitle = SectionTitle;
+
+
 
             db.SaveChanges();
 
@@ -92,7 +117,7 @@ namespace PoliticList.Controllers
 
             return RedirectToAction("Topic", "Home", new { slug = thisTopic.TopicSlug });
         }
-        private string GetUserIP()
+        public string GetUserIP()
         {
             string ipList = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 

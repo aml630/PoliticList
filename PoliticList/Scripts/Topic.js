@@ -1,4 +1,11 @@
-﻿$(".editLink").click(function () {
+﻿$(".changeButton").click(function () {
+    $(".hotNews").toggle();
+    $(".mostVotes").toggle();
+
+})
+
+
+$(".editLink").click(function () {
     $(this).next(".editLinkForm").toggle();
 })
 

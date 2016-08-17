@@ -56,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -208,8 +209,41 @@
     <Compile Include="Migrations\201608041855480_newslinksource.Designer.cs">
       <DependentUpon>201608041855480_newslinksource.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608152044164_feedLinks.cs" />
+    <Compile Include="Migrations\201608152044164_feedLinks.Designer.cs">
+      <DependentUpon>201608152044164_feedLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608152047440_voterFeedId.cs" />
+    <Compile Include="Migrations\201608152047440_voterFeedId.Designer.cs">
+      <DependentUpon>201608152047440_voterFeedId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608152210006_TimeAndPic.cs" />
+    <Compile Include="Migrations\201608152210006_TimeAndPic.Designer.cs">
+      <DependentUpon>201608152210006_TimeAndPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608152213553_TimeAndPicc.cs" />
+    <Compile Include="Migrations\201608152213553_TimeAndPicc.Designer.cs">
+      <DependentUpon>201608152213553_TimeAndPicc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608152220052_TimeAndPiccc.cs" />
+    <Compile Include="Migrations\201608152220052_TimeAndPiccc.Designer.cs">
+      <DependentUpon>201608152220052_TimeAndPiccc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608160124033_linkExplain.cs" />
+    <Compile Include="Migrations\201608160124033_linkExplain.Designer.cs">
+      <DependentUpon>201608160124033_linkExplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608160129171_sectionTitle.cs" />
+    <Compile Include="Migrations\201608160129171_sectionTitle.Designer.cs">
+      <DependentUpon>201608160129171_sectionTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608162221553_addSectionUserIpp.cs" />
+    <Compile Include="Migrations\201608162221553_addSectionUserIpp.Designer.cs">
+      <DependentUpon>201608162221553_addSectionUserIpp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FeedLinksModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LinksModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -285,6 +319,7 @@
     <Content Include="Views\Home\_shareBar.cshtml" />
     <Content Include="Views\Home\_disqus.cshtml" />
     <Content Include="Views\Home\_shareStuff.cshtml" />
+    <Content Include="Views\Home\BlogList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +357,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608041855480_newslinksource.resx">
       <DependentUpon>201608041855480_newslinksource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608152044164_feedLinks.resx">
+      <DependentUpon>201608152044164_feedLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608152047440_voterFeedId.resx">
+      <DependentUpon>201608152047440_voterFeedId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608152210006_TimeAndPic.resx">
+      <DependentUpon>201608152210006_TimeAndPic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608152213553_TimeAndPicc.resx">
+      <DependentUpon>201608152213553_TimeAndPicc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608152220052_TimeAndPiccc.resx">
+      <DependentUpon>201608152220052_TimeAndPiccc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608160124033_linkExplain.resx">
+      <DependentUpon>201608160124033_linkExplain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608160129171_sectionTitle.resx">
+      <DependentUpon>201608160129171_sectionTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608162221553_addSectionUserIpp.resx">
+      <DependentUpon>201608162221553_addSectionUserIpp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

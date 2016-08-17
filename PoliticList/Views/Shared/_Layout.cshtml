@@ -32,9 +32,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("Blog", "BlogList", "Home")</li>
      
                 </ul>
+                <form action="~/Home/Scrape">
+                    <button>Get Articles</button>
+                </form>
                @if (User.IsInRole("Admin"))
                {
                 @Html.Partial("_LoginPartial")

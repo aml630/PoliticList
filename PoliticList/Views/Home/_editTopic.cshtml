@@ -3,7 +3,7 @@
 {
 <button class="editTopic btn btn-success">Edit Topic</button>
 <form class="editTopicForm" action="~/Topic/EditTopic">
-    <input value="@Model.TopicName" name="TopicName" />
+    <textarea name="TopicName">@Model.TopicName</textarea>
     <br />
     <input placeholder="Slug" value="@Model.TopicSlug" name="TopicSlug" />
     <br />

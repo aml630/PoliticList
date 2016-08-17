@@ -18,6 +18,8 @@ namespace PoliticList.Models
         public string NewsLinkSource { get; set; }
 
 
+
+
         [ForeignKey("Topic")]
         public int TopicId { get; set; }
 

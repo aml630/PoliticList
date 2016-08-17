@@ -23,6 +23,9 @@ textarea {
     max-width: 280px;
 }
 
+.columnTitle {
+    text-align: center;
+}
 
 .topicName {
     text-align: center;
@@ -38,18 +41,13 @@ textarea {
     /*color: white;*/
 }
 
-.coverTopicName {
-    /*text-align: center;*/
-    font-family: 'Passion One', cursive;
-    font-size: 3.8rem;
-    margin-bottom: 1.7rem;
-    margin-left: 20px;
-    /*margin-right: auto;*/
-    margin-top: auto;
-    transition: all 0.5s ease;
-    font-weight: 900;
-    line-height: .8;
+.detailedExplain {
+    margin: 30px;
+    font-size: 18px;
+    line-height: 1.7em;
 }
+
+
 
 .topicPic {
     text-align: center;
@@ -67,8 +65,35 @@ textarea {
 
 }
 
+.linkPlusDate {
+    min-height: 60px;
+    height: auto;
+    width: 100%;
+ border: 1px solid #d1d1d1;
+    box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+        margin: 5px;
+}
+.publishDate {
+    /*float: left;*/
+}
+.publisherImg {
+    float: left;
+    margin-top: 10px;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
 
+}
+.feedLink {
+   font-weight: bold;
+}
+.tweetPoint {
+    margin-left: 5px;
+}
 
+.mainPointBox {
+    margin-left: 60px;
+}
 #heart {
     background-color: Transparent;
     background-repeat: no-repeat;
@@ -77,11 +102,55 @@ textarea {
     overflow: hidden;
     outline: none;
     background-image: url("http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425");
-    background-size: 50px 50px;
-    height: 50px;
-    width: 50px;
+    background-size: 40px 40px;
+    height: 40px;
+    width: 40px;
     color: white;
     font-weight: bold;
+}
+.headerArrow {
+    height: 30px;
+    width: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.frontHeart {
+        margin-top: 5px;
+        margin-left: 6px;
+
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    background-image: url("http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425");
+    background-size: 30px 40px;
+    height: 40px;
+    width: 30px;
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.frontHeartVoted {
+        margin-top: 5px;
+        margin-left: 6px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    background-image: url("http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425");
+    background-size: 30px 40px;
+    opacity: .6;
+    height: 40px;
+    width: 30px;
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
 }
 
 .intro {
@@ -99,7 +168,10 @@ textarea {
 }
 
 .linkBox {
-    margin-left: 27%;
+    margin-left: 4%;
+}
+.sourceLink {
+    font-weight: bold;
 }
 
 .quoteBox {
@@ -191,7 +263,31 @@ margin-right: 10px;
 text-align: left;
   
 }
+.userAdd {
+    text-align: center;
+     border: 1px solid #d1d1d1;
+  box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  /*margin: 10px;*/
+   display: block;
+}
+.userAdd textarea {
+     display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.userAdd button {
+    margin-bottom: 10px;
+}
 
+.mainHeader {
+    margin-top: 5px;
+    text-align: center;
+    border: 1px solid #d1d1d1;
+  box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+}
 .voteBox {
     width: 100%;
     border: 1px solid #d1d1d1;
@@ -202,13 +298,45 @@ text-align: left;
     margin-right: auto;
     margin-left: auto;
 }
-
+.mostVotes {
+    /*display: none;*/
+}
 .topicLine {
-    display: inline-flex;
+    text-align: center;
     border: 1px solid #d1d1d1;
     width: 100%;
     box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
-    min-height: 70px;
+    min-height: 90px;
+    background-color: #A7F432;
+}
+
+.columnTitle {
+    /*margin-bottom: 40px;*/
+}
+
+.changeButton {
+  border: 1px solid #d1d1d1;
+  box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+    width: 200px;
+    height: auto;
+    margin-left: 70%;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #F1F1F1;
+    font-weight: bold;
+}
+
+.coverTopicName {
+    text-align: center;
+    font-family: 'Passion One', cursive;
+    font-size: 3.8rem;
+    margin-bottom: 1.7rem;
+    /*margin-left: 90px;*/
+    /*margin-right: auto;*/
+    margin-top: 10px;
+    transition: all 0.5s ease;
+    font-weight: 900;
+    line-height: .8;
 }
 .navbar-brand:hover {
     color: #77DD77 !important;
