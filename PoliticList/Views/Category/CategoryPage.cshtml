@@ -1,0 +1,171 @@
+﻿@model PoliticList.Models.Category
+
+
+<div class="catImageDiv">
+    <img class="catImage" src=@Model.CategoryPic />
+
+    <div class="showHideButtons">
+        <div class="changeVotesActive btn btn-success">
+            <p>Most Votes</p>
+        </div>
+        <div class="changeVotesInactive btn btn-default">
+            <p>Most Votes</p>
+        </div>
+        <div class="changeHotActive btn btn-success">
+            <p>Hot Off The Press</p>
+        </div>
+        <div class="changeHotInactive btn btn-default">
+            <p>Hot Off The Press</p>
+        </div>
+    </div>
+</div>
+<div class="catHotNews">
+    <h1 class="columnTitle">Hot Off The Press</h1>
+    <div class="col-md-8">
+   
+    @foreach (var link in ViewBag.TempLinks)
+            {
+        <div class="mainPageLink">
+
+            @if ((Html.Action("AlreadyVoted", "Home", new { FeedLinkId = link.FeedLinkId })).ToString() == "true")
+            {
+                <div class="upvote">
+                    <button class="frontHeartVoted">
+                        @link.Votes
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="upvote">
+                    <button onclick="mainPageUpvote(@link.FeedLinkId, this)" class="frontHeart">
+                        @link.Votes
+                    </button>
+                    <button class="frontHeartVoted ajaxVoted">
+                        @link.Votes
+                    </button>
+                </div>
+            }
+            <img class="publisherImg" src="@link.FeedLinkPic" />
+
+            <div class="linkPlusDate">
+
+                <a class="feedLink" href="@link.FeedLinkUrl">
+                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(link.FeedLinkTitle))
+                </a>
+                <p class="publishDate">@link.FeedLinkTime </p>
+                <div class="showCommentBox">
+                    <button onclick="showComments(@link.FeedLinkId, this)" class="chatButton @link.FeedLinkId">
+                        @link.Comments.Count
+                    </button>
+                   
+                </div>
+            </div>
+        </div>
+        <hr />
+
+    }
+        </div>
+</div>
+
+<div class="catMostVotes">
+    <h1 class="columnTitle">Most Votes</h1>
+    <div class="col-md-8">
+
+        @if (ViewBag.VoteLinks != null)
+        {
+            foreach (var link in ViewBag.VoteLinks)
+            {
+                <div class="mainPageLink">
+
+                    @if ((Html.Action("AlreadyVoted", "Home", new { FeedLinkId = link.FeedLinkId })).ToString() == "true")
+                    {
+                        <div class="upvote">
+                            <button class="frontHeartVoted">
+                                @link.Votes
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="upvote">
+                            <button onclick="mainPageUpvote(@link.FeedLinkId, this)" class="frontHeart">
+                                @link.Votes
+                            </button>
+                            <button class="frontHeartVoted ajaxVoted">
+                                @link.Votes
+                            </button>
+                        </div>
+                    }
+                    <img class="publisherImg" src="@link.FeedLinkPic" />
+
+                    <div class="linkPlusDate">
+
+                        <a class="feedLink" href="@link.FeedLinkUrl">
+                            @link.FeedLinkTitle
+                        </a>
+                        <p class="publishDate">@link.FeedLinkTime </p>
+                    </div>
+
+                </div>
+                <hr />
+
+            }
+        }
+    </div>
+</div>
+<div class="col-md-4">
+    @Html.Partial("_disqus")
+
+
+
+
+    @foreach (var link in ViewBag.TempLinks)
+    {
+        <div class="commentChunk" id="@link.FeedLinkId">
+            @foreach (var comment in link.Comments)
+            {
+
+                <div class="postBox">
+
+                    @if ((Html.Action("AlreadyVotedComment", "Category", new { CommentId = comment.CommentId })).ToString() == "true")
+                    {
+                        <div class="upvote">
+                            <button class="commentHeartVoted">
+                                @comment.Votes
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="upvote">
+                            <button onclick="commentPageUpvote(@comment.CommentId, this)" class="commentHeart">
+                                @comment.Votes
+                            </button>
+                            <button class="commentHeartVoted ajaxVoted">
+                                @comment.Votes
+                            </button>
+                        </div>
+                    }
+                    <div class="commentPostHolder">
+                        <p>@comment.Post</p>
+                    </div>
+                    
+                </div>
+                <hr />
+            }
+            @*<form class="commentBox" action="~/Category/Comment">
+                <input name="Post" placeholder="Your Comment here" />
+                <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
+                <input name="slug" hidden value="@Model.CategorySlug" />
+
+                <button class="btn btn-info">Submit</button>
+            </form>*@
+            <hr />
+            <textarea class="yourComment form-control" placeholder="Write Your Comment Here"></textarea>
+            <br />
+            <button class="btn btn-info" onclick="Comment(this, @link.FeedLinkId)">Submit</button>
+        </div>
+    }
+  
+</div>

@@ -24,6 +24,11 @@ namespace PoliticList
                url: "{slug}",
                defaults: new { controller = "Home", action = "Topic"}
            );
+            routes.MapRoute(
+              name: "Category",
+              url: "AwesomeCategory/{slug}",
+              defaults: new { controller = "Category", action = "CategoryPage" }
+          );
 
             routes.MapRoute(
                 name: "Default",

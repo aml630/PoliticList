@@ -26,7 +26,7 @@
 
                     @if ((Html.Action("AlreadyVoted", "Home", new { FeedLinkId = link.FeedLinkId })).ToString() == "true")
                     {
-                        <div class="upvote">
+                        <div class="upvote voted">
                             <button class="frontHeartVoted">
                                 @link.Votes
                             </button>
@@ -34,12 +34,15 @@
                     }
                     else
                     {
-                        <form class="upvote" action="~/Home/StoryUpvote">
-                            <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
-                            <button class="frontHeart">
+                        <div class="upvote">
+                            <button onclick="mainPageUpvote(@link.FeedLinkId, this)"  class="frontHeart">
                                 @link.Votes
                             </button>
-                        </form>
+                            <button class="frontHeartVoted ajaxVoted">
+                                @link.Votes
+                            </button>
+                        </div>
+                 
                     }
                     <img class="publisherImg" src="@link.FeedLinkPic" />
 
@@ -48,7 +51,7 @@
                         <a class="feedLink" href="@link.FeedLinkUrl">
                             @Html.Raw(System.Web.HttpUtility.HtmlDecode(link.FeedLinkTitle))
                         </a>
-                        <p class="publishDate">@link.FeedLinkTime </p>
+                        <p class="publishDate">@link.FeedLinkTime <a href="~/AwesomeCategory/@link.Category.CategorySlug">@link.Category.CategoryName</a></p>
                     </div>
                 </div>
                 <hr />
@@ -115,12 +118,14 @@
                     }
                     else
                     {
-                        <form class="upvote" action="~/Home/StoryUpvote">
-                            <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
-                            <button class="frontHeart">
+                        <div class="upvote">
+                            <button onclick="mainPageUpvote(@link.FeedLinkId, this)" class="frontHeart">
                                 @link.Votes
                             </button>
-                        </form>
+                            <button class="frontHeartVoted ajaxVoted">
+                                @link.Votes
+                            </button>
+                        </div>
                     }
                     <img class="publisherImg" src="@link.FeedLinkPic" />
 
@@ -139,7 +144,7 @@
         }
     </div>
 </div>
-@Html.Partial("_addTopic")
+@Html.Partial("_disqus")
 
 <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 

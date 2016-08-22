@@ -69,10 +69,13 @@ textarea {
     min-height: 60px;
     height: auto;
     width: 100%;
- border: 1px solid #d1d1d1;
+    border: 1px solid #d1d1d1;
     box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
-        margin: 5px;
+    margin: 5px;
+    background-color: white;
 }
+
+
 .publishDate {
     /*float: left;*/
 }
@@ -90,9 +93,32 @@ textarea {
 .tweetPoint {
     margin-left: 5px;
 }
-
+.yourComment {
+    /*width: 350px !important;*/
+    height: 200px;
+}
+.commentSelected {
+    background-color: #e6ffff;
+}
+textarea {
+    max-width: 500px;
+}
 .mainPointBox {
     margin-left: 60px;
+}
+.commentPostHolder {
+    margin-left: 50px;
+    margin-right: auto;
+    width: 80%;
+}
+
+.postBox {
+     border: 1px solid #d1d1d1;
+    box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+    height: auto;
+    width: auto;
+    background-color: white;
+   
 }
 #heart {
     background-color: Transparent;
@@ -116,6 +142,44 @@ textarea {
 }
 
 
+
+.commentHeart {
+        margin-top: -2px;
+        margin-left: 5px;
+          margin-left: 5px;
+
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    background-image: url("http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425");
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
+    color: white;
+    font-weight: bold;
+    margin-right: 15px;
+}
+.commentHeartVoted {
+        margin-top: 5px;
+        margin-left: 6px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    background-image: url("http://vignette3.wikia.nocookie.net/divergent/images/2/24/Upvote.png/revision/latest?cb=20130305224425");
+    background-size: 20px 20px;
+    opacity: .6;
+    height: 20px;
+    width: 20px;
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
+}
 .frontHeart {
         margin-top: 5px;
         margin-left: 6px;
@@ -183,10 +247,15 @@ textarea {
     border-radius: 4px;
 }
 
+.commentChunk {
+    display: none;
+}
     .quoteBox:hover {
         border: 1px solid #ccd6dd;
     }
-
+    .ajaxVoted {
+        display: none;
+    }
 .upvote {
     float: left;
     margin-left: 5px;
@@ -258,10 +327,74 @@ textarea {
     border-radius: 15px;
   
 }
+
+.chatButton{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    background-image: url("http://www.pngall.com/wp-content/uploads/2016/04/Chat-PNG-Clipart.png");
+    background-size: 30px 30px;
+    height: 30px;
+    width: 30px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-top: -22px;
+}
+.showCommentBox {
+    /*float:right;
+    margin-top: -30px;*/
+
+}
+body {
+    background-color: #f2f2f2;
+}
 .whatHappened p {
 margin-right: 10px;
 text-align: left;
   
+}
+.showHideButtons {
+    display: inline-flex;
+}
+.changeVotesActive {
+    font-weight: bold;
+}
+.changeHotActive {
+    font-weight: bold;
+    display:none;
+}
+
+.commentBox {
+    /*display:none;*/
+}
+.changeHotInactive {
+    font-weight: bold;
+        opacity: .3;
+}
+.changeVotesInactive {
+    display:none;
+    font-weight: bold;
+    opacity: .3;
+}
+.catImage {
+    border-radius: 25px;
+    height: 200px;
+    width: 500px;
+     border: 1px solid #d1d1d1;
+  box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+}
+.catImageDiv  {
+        text-align: center;
+         border: 1px solid #d1d1d1;
+  box-shadow: rgba(0,0,0, 0.0980392) 0px 3px 12px 1px;
+  background-color: white;
+}
+.catMostVotes {
+    display: none;
 }
 .userAdd {
     text-align: center;
@@ -283,6 +416,7 @@ text-align: left;
 }
 
 .mainHeader {
+    background-color: white;
     margin-top: 5px;
     text-align: center;
     border: 1px solid #d1d1d1;

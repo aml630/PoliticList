@@ -21,7 +21,7 @@ namespace PoliticList.Controllers
         {
 
     
-            ViewBag.TempLinks = db.FeedLinks.OrderByDescending(x => x.FeedLinkTime).Where(x=>x.FeedLinkTime>=DateTime.Today).ToList();
+            ViewBag.TempLinks = db.FeedLinks.OrderByDescending(x => x.FeedLinkTime).Include(y=>y.Category).Where(x=>x.FeedLinkTime>=DateTime.Today).ToList();
             ViewBag.VoteLinks = db.FeedLinks.OrderByDescending(x => x.Votes).ThenByDescending(x => x.FeedLinkTime).Where(x=> x.Votes >= 3).Where(x => x.FeedLinkTime >= DateTime.Today).ToList();
 
 
@@ -77,7 +77,9 @@ namespace PoliticList.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return Content(thisFeedLink.Votes.ToString(), "text/plain");
+
 
         }
 
@@ -166,9 +168,25 @@ namespace PoliticList.Controllers
                     var tempLink = new FeedLink();
 
                     tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
+
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
+
                     tempLink.FeedLinkPic = "https://s0.wp.com/wp-content/themes/vip/espn-fivethirtyeight/assets/images/logo-fox-head-color.svg";
                     tempLink.FeedLinkTime = item.PublishDate.DateTime;
                     tempLink.Votes = rnd.Next(0, 7);
+
 
 
                     tempLink.FeedLinkUrl = item.Links[0].Uri.AbsoluteUri;
@@ -189,7 +207,23 @@ namespace PoliticList.Controllers
 
                 if (alreadyGotIt == null)
                 {
+
+
                     var tempLink = new FeedLink();
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }
+                    else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
 
                     tempLink.FeedLinkTitle = item.Title.Text;
                     tempLink.FeedLinkPic = "https://upload.wikimedia.org/wikipedia/commons/e/e5/Vox_(website)_logo.jpg";
@@ -219,6 +253,22 @@ namespace PoliticList.Controllers
                     var tempLink = new FeedLink();
 
                     tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }
+                    else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
+
+                  
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
                     tempLink.FeedLinkPic = "https://pbs.twimg.com/profile_images/720642862551928832/I58EQMCH.jpg";
                     tempLink.FeedLinkTime = item.PublishDate.DateTime;
                     tempLink.Votes = rnd.Next(0, 7);
@@ -232,30 +282,43 @@ namespace PoliticList.Controllers
 
 
             }
-            string urlThinkProgress = "https://thinkprogress.org/feed";
-            XmlReader readerThinkProgress = XmlReader.Create(urlThinkProgress);
-            SyndicationFeed feedThinkProgress = SyndicationFeed.Load(readerThinkProgress);
-            readerThinkProgress.Close();
-            foreach (SyndicationItem item in feedThinkProgress.Items)
-            {
-                var alreadyGotIt = db.FeedLinks.FirstOrDefault(x => x.FeedLinkTitle == item.Title.Text);
+            //string urlThinkProgress = "https://thinkprogress.org/feed";
+            //XmlReader readerThinkProgress = XmlReader.Create(urlThinkProgress);
+            //SyndicationFeed feedThinkProgress = SyndicationFeed.Load(readerThinkProgress);
+            //readerThinkProgress.Close();
+            //foreach (SyndicationItem item in feedThinkProgress.Items)
+            //{
+            //    var alreadyGotIt = db.FeedLinks.FirstOrDefault(x => x.FeedLinkTitle == item.Title.Text);
 
-                if (alreadyGotIt == null)
-                {
-                    var tempLink = new FeedLink();
+            //    if (alreadyGotIt == null)
+            //    {
+            //        var tempLink = new FeedLink();
+            //tempLink.FeedLinkTitle = item.Title.Text;
+            //if (tempLink.FeedLinkTitle.Contains("Clinton"))
+            //{
+            //    tempLink.CategoryId = 5;
+            //}
+            //else if (tempLink.FeedLinkTitle.Contains("Trump"))
+            //{
+            //    tempLink.CategoryId = 6;
+            //}
+            //else
+            //{
+            //    tempLink.CategoryId = 4;
+            //}
 
-                    tempLink.FeedLinkTitle = item.Title.Text;
-                    tempLink.FeedLinkPic = "http://www.underconsideration.com/brandnew/archives/thinkprogress_icon.png";
-                    tempLink.FeedLinkTime = item.PublishDate.DateTime;
-                    tempLink.Votes = rnd.Next(0, 7);
+            //        tempLink.FeedLinkTitle = item.Title.Text;
+            //        tempLink.FeedLinkPic = "http://www.underconsideration.com/brandnew/archives/thinkprogress_icon.png";
+            //        tempLink.FeedLinkTime = item.PublishDate.DateTime;
+            //        tempLink.Votes = rnd.Next(0, 7);
 
 
 
-                    tempLink.FeedLinkUrl = item.Links[0].Uri.AbsoluteUri;
-                    db.FeedLinks.Add(tempLink);
-                    db.SaveChanges();
-                }
-            }
+            //        tempLink.FeedLinkUrl = item.Links[0].Uri.AbsoluteUri;
+            //        db.FeedLinks.Add(tempLink);
+            //        db.SaveChanges();
+            //    }
+            //}
 
             string urlPolitifact = "http://www.politifact.com/feeds/articles/truth-o-meter/";
             XmlReader readerPolitifact = XmlReader.Create(urlPolitifact);
@@ -268,6 +331,20 @@ namespace PoliticList.Controllers
                 if (alreadyGotIt == null)
                 {
                     var tempLink = new FeedLink();
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }
+                    else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
 
                     tempLink.FeedLinkTitle = item.Title.Text;
                     tempLink.FeedLinkPic = "http://static.politifact.com/rulings/og/logo-meter.png";
@@ -295,6 +372,20 @@ namespace PoliticList.Controllers
                     var tempLink = new FeedLink();
 
                     tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }
+                    else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
                     tempLink.FeedLinkPic = "http://pbs.twimg.com/profile_images/2151387107/slateLogo-S-facebookSquarex200_reasonably_small.jpg";
                     tempLink.FeedLinkTime = item.PublishDate.DateTime;
                     tempLink.Votes = rnd.Next(0, 7);
@@ -320,6 +411,20 @@ namespace PoliticList.Controllers
                     var tempLink = new FeedLink();
 
                     tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }
+                    else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
                     tempLink.FeedLinkPic = "http://www.pixelmonkey.org/wordpress/wp-content/uploads/2014/12/tnr_logo.jpg";
                     tempLink.FeedLinkTime = item.PublishDate.DateTime;
                     tempLink.Votes = rnd.Next(0, 7);
@@ -331,6 +436,52 @@ namespace PoliticList.Controllers
                     db.SaveChanges();
                 }
             }
+            string urlPolitico = "http://www.politico.com/rss/politicopicks.xml";
+            XmlReader readerPolitico = XmlReader.Create(urlPolitico);
+            SyndicationFeed feedPolitico = SyndicationFeed.Load(readerPolitico);
+            readerPolitico.Close();
+            foreach (SyndicationItem item in feedPolitico.Items)
+            {
+                var alreadyGotIt = db.FeedLinks.FirstOrDefault(x => x.FeedLinkTitle == item.Title.Text);
+
+                if (alreadyGotIt == null & item.Id != "")
+                {
+                    var tempLink = new FeedLink();
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
+                    if (tempLink.FeedLinkTitle.Contains("Clinton"))
+                    {
+                        tempLink.CategoryId = 5;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Trump"))
+                    {
+                        tempLink.CategoryId = 6;
+                    }
+                    else
+                    {
+                        tempLink.CategoryId = 4;
+                    }
+
+                    tempLink.FeedLinkTitle = item.Title.Text;
+                    tempLink.FeedLinkPic = "https://opportunitynation.org/app/uploads/2014/09/Politico-Logo-News-e1425500998350.png";
+                    if(item.PublishDate.DateTime.Year != 2016 )
+                    {
+                        tempLink.FeedLinkTime = DateTime.Now;
+                    }else
+                    {
+                        tempLink.FeedLinkTime = item.PublishDate.DateTime;
+
+                    }
+                    tempLink.Votes = rnd.Next(0, 7);
+
+                      tempLink.FeedLinkUrl = item.Links[0].Uri.AbsoluteUri;
+                        db.FeedLinks.Add(tempLink);
+                        db.SaveChanges();
+                    
+               
+
+                }
+            }
 
             return RedirectToAction("Index");
 
@@ -339,6 +490,13 @@ namespace PoliticList.Controllers
         {
             var topics = db.Topics.ToList();
             return View(topics);
+        }
+
+        public ActionResult ajaxVote()
+        {
+
+            return Content("Hello from the controller!", "text/plain");
+
         }
     }
 }

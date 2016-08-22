@@ -24,7 +24,7 @@ namespace PoliticList.Models
         
 
         public bool Published { get; set; }
-        public int PosterIp { get; set; }
+        public int PosterIp { get; set; } /*glitchy wont let me delete*/
         public string newPosterIp { get; set; }
 
         public int Votes { get; set; }

@@ -36,6 +36,10 @@ namespace PoliticList.Models
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Voter> Voters { get; set; }
         public DbSet<FeedLink> FeedLinks { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+
 
     }
 }

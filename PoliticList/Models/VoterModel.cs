@@ -14,6 +14,8 @@ namespace PoliticList.Models
         public string VoterIPAddress { get; set; }
         public int ArticleSegmentId { get; set; }
         public int FeedLinkId { get; set; }
+        public int CommentId { get; set; }
+
 
     }
 }

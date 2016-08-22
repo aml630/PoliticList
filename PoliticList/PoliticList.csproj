@@ -171,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
@@ -241,8 +242,38 @@
     <Compile Include="Migrations\201608162221553_addSectionUserIpp.Designer.cs">
       <DependentUpon>201608162221553_addSectionUserIpp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608180005264_linkFeedComments.cs" />
+    <Compile Include="Migrations\201608180005264_linkFeedComments.Designer.cs">
+      <DependentUpon>201608180005264_linkFeedComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608180029019_linkFeedCommentsUpdate.cs" />
+    <Compile Include="Migrations\201608180029019_linkFeedCommentsUpdate.Designer.cs">
+      <DependentUpon>201608180029019_linkFeedCommentsUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608180047205_linkFeedCommentsUpdateAgain.cs" />
+    <Compile Include="Migrations\201608180047205_linkFeedCommentsUpdateAgain.Designer.cs">
+      <DependentUpon>201608180047205_linkFeedCommentsUpdateAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608181656347_VoterCommentId.cs" />
+    <Compile Include="Migrations\201608181656347_VoterCommentId.Designer.cs">
+      <DependentUpon>201608181656347_VoterCommentId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608181747425_CategoryModel.cs" />
+    <Compile Include="Migrations\201608181747425_CategoryModel.Designer.cs">
+      <DependentUpon>201608181747425_CategoryModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608181749527_CategoryModelUpdate.cs" />
+    <Compile Include="Migrations\201608181749527_CategoryModelUpdate.Designer.cs">
+      <DependentUpon>201608181749527_CategoryModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608221857153_catParent.cs" />
+    <Compile Include="Migrations\201608221857153_catParent.Designer.cs">
+      <DependentUpon>201608221857153_catParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\CommentsModel.cs" />
     <Compile Include="Models\FeedLinksModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LinksModel.cs" />
@@ -317,9 +348,10 @@
     <Content Include="Views\Home\_editLink.cshtml" />
     <Content Include="Views\Home\_editTopic.cshtml" />
     <Content Include="Views\Home\_shareBar.cshtml" />
-    <Content Include="Views\Home\_disqus.cshtml" />
+    <Content Include="Views\Shared\_disqus.cshtml" />
     <Content Include="Views\Home\_shareStuff.cshtml" />
     <Content Include="Views\Home\BlogList.cshtml" />
+    <Content Include="Views\Category\CategoryPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -381,6 +413,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608162221553_addSectionUserIpp.resx">
       <DependentUpon>201608162221553_addSectionUserIpp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608180005264_linkFeedComments.resx">
+      <DependentUpon>201608180005264_linkFeedComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608180029019_linkFeedCommentsUpdate.resx">
+      <DependentUpon>201608180029019_linkFeedCommentsUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608180047205_linkFeedCommentsUpdateAgain.resx">
+      <DependentUpon>201608180047205_linkFeedCommentsUpdateAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608181656347_VoterCommentId.resx">
+      <DependentUpon>201608181656347_VoterCommentId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608181747425_CategoryModel.resx">
+      <DependentUpon>201608181747425_CategoryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608181749527_CategoryModelUpdate.resx">
+      <DependentUpon>201608181749527_CategoryModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608221857153_catParent.resx">
+      <DependentUpon>201608221857153_catParent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
