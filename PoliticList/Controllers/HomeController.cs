@@ -175,7 +175,12 @@ namespace PoliticList.Controllers
                     else if (tempLink.FeedLinkTitle.Contains("Trump"))
                     {
                         tempLink.CategoryId = 6;
-                    }else
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
+                    }
+                    else
                     {
                         tempLink.CategoryId = 4;
                     }
@@ -220,6 +225,10 @@ namespace PoliticList.Controllers
                     {
                         tempLink.CategoryId = 6;
                     }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
+                    }
                     else
                     {
                         tempLink.CategoryId = 4;
@@ -260,6 +269,10 @@ namespace PoliticList.Controllers
                     else if (tempLink.FeedLinkTitle.Contains("Trump"))
                     {
                         tempLink.CategoryId = 6;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
                     }
                     else
                     {
@@ -341,6 +354,10 @@ namespace PoliticList.Controllers
                     {
                         tempLink.CategoryId = 6;
                     }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
+                    }
                     else
                     {
                         tempLink.CategoryId = 4;
@@ -379,6 +396,10 @@ namespace PoliticList.Controllers
                     else if (tempLink.FeedLinkTitle.Contains("Trump"))
                     {
                         tempLink.CategoryId = 6;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
                     }
                     else
                     {
@@ -419,6 +440,10 @@ namespace PoliticList.Controllers
                     {
                         tempLink.CategoryId = 6;
                     }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
+                    }
                     else
                     {
                         tempLink.CategoryId = 4;
@@ -456,6 +481,10 @@ namespace PoliticList.Controllers
                     else if (tempLink.FeedLinkTitle.Contains("Trump"))
                     {
                         tempLink.CategoryId = 6;
+                    }
+                    else if (tempLink.FeedLinkTitle.Contains("Police"))
+                    {
+                        tempLink.CategoryId = 7;
                     }
                     else
                     {

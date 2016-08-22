@@ -12,11 +12,6 @@
 
         <h1 class="columnTitle">Hot Off The Press</h1>
 
-        @*<div class="changeButton">
-            <p>Most Votes</p>
-        </div>*@
-
-
         @if (ViewBag.TempLinks != null)
         {
 
@@ -51,7 +46,16 @@
                         <a class="feedLink" href="@link.FeedLinkUrl">
                             @Html.Raw(System.Web.HttpUtility.HtmlDecode(link.FeedLinkTitle))
                         </a>
-                        <p class="publishDate">@link.FeedLinkTime <a href="~/AwesomeCategory/@link.Category.CategorySlug">@link.Category.CategoryName</a></p>
+                        <p class="publishDate">@link.FeedLinkTime 
+                        
+                     
+                     </p>
+                        @if (link.Category.CategoryName != "Uncategorized")
+                        {
+                            
+                                <a class="btn btn-group-xs categoryTag" href="~/AwesomeCategory/@link.Category.CategorySlug">@link.Category.CategoryName</a>
+                            
+                        }
                     </div>
                 </div>
                 <hr />
@@ -59,49 +63,13 @@
             }
         }
         </div>
-    @*<div class="mostVotes">
-        <h1 class="columnTitle">Most Votes</h1>
 
-        <div class="changeButton">
-            <p>Hot Off The Press</p>
-        </div>
-        @if (ViewBag.VoteLinks != null)
-        {
-            foreach (var link in ViewBag.VoteLinks)
-            {
-                <div class="mainPageLink">
-
-                    <form class="upvote" action="~/Home/StoryUpvote">
-                        <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
-                        <button class="frontHeart">
-                            @link.Votes
-                        </button>
-                    </form>
-                    <img class="publisherImg" src="@link.FeedLinkPic" />
-
-                    <div class="linkPlusDate">
-
-                        <a class="feedLink" href="@link.FeedLinkUrl">
-                            @link.FeedLinkTitle
-                        </a>
-                        <p class="publishDate">@link.FeedLinkTime </p>
-                    </div>
-
-                </div>
-                <hr />
-
-            }
-        }
-    </div>*@
     </div>
 <div class="col-md-6">
     
     <div class="mostVotes">
         <h1 class="columnTitle">Most Votes</h1>
 
-        @*<div class="changeButton">
-            <p>Hot Off The Press</p>
-        </div>*@
         @if (ViewBag.VoteLinks != null)
         {
             foreach (var link in ViewBag.VoteLinks)

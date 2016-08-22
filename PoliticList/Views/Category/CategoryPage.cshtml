@@ -54,12 +54,12 @@
                     @Html.Raw(System.Web.HttpUtility.HtmlDecode(link.FeedLinkTitle))
                 </a>
                 <p class="publishDate">@link.FeedLinkTime </p>
-                <div class="showCommentBox">
+                @*<div class="showCommentBox">
                     <button onclick="showComments(@link.FeedLinkId, this)" class="chatButton @link.FeedLinkId">
                         @link.Comments.Count
                     </button>
                    
-                </div>
+                </div>*@
             </div>
         </div>
         <hr />
@@ -120,7 +120,7 @@
 
 
 
-    @foreach (var link in ViewBag.TempLinks)
+    @*@foreach (var link in ViewBag.TempLinks)
     {
         <div class="commentChunk" id="@link.FeedLinkId">
             @foreach (var comment in link.Comments)
@@ -154,18 +154,12 @@
                 </div>
                 <hr />
             }
-            @*<form class="commentBox" action="~/Category/Comment">
-                <input name="Post" placeholder="Your Comment here" />
-                <input name="FeedLinkId" hidden value="@link.FeedLinkId" />
-                <input name="slug" hidden value="@Model.CategorySlug" />
 
-                <button class="btn btn-info">Submit</button>
-            </form>*@
             <hr />
             <textarea class="yourComment form-control" placeholder="Write Your Comment Here"></textarea>
             <br />
             <button class="btn btn-info" onclick="Comment(this, @link.FeedLinkId)">Submit</button>
         </div>
-    }
+    }*@
   
 </div>

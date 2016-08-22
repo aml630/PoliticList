@@ -17,34 +17,6 @@ namespace PoliticList.Controllers
             ViewBag.VoteLinks = db.FeedLinks.OrderByDescending(x => x.Votes).ThenByDescending(x => x.FeedLinkTime).Where(x => x.Votes >= 3).Where(x => x.FeedLinkTime >= DateTime.Today).Where(x => x.Category.CategorySlug == slug).ToList();
             var thisCategory = db.Categories.FirstOrDefault(x => x.CategorySlug == slug);
             return View(thisCategory);
-            //if (slug == "donald-trump")
-            //{
-            //    ViewBag.TempLinks = db.FeedLinks.OrderByDescending(x => x.FeedLinkTime).Where(x => x.FeedLinkTime >= DateTime.Today).Where(x => x.FeedLinkTitle.Contains("Donald") || x.FeedLinkTitle.Contains("Trump")).Include(x => x.Comments).ToList();
-
-            //    //.Include(x => FeedLink.Select(x => x.Comments)
-
-            //    ViewBag.VoteLinks = db.FeedLinks.OrderByDescending(x => x.Votes).ThenByDescending(x => x.FeedLinkTime).Where(x => x.Votes >= 3).Where(x => x.FeedLinkTime >= DateTime.Today).Where(x => x.FeedLinkTitle.Contains("Donald") || x.FeedLinkTitle.Contains("Trump")).ToList();
-
-            //    var thisCategory = db.Categories.FirstOrDefault(x => x.CategorySlug == slug);
-            //    return View(thisCategory);
-
-            //}
-            //else if (slug == "hillary-clinton")
-            //{
-            //    ViewBag.TempLinks = db.FeedLinks.OrderByDescending(x => x.FeedLinkTime).Where(x => x.FeedLinkTime >= DateTime.Today).Where(x => x.FeedLinkTitle.Contains("Hillary") || x.FeedLinkTitle.Contains("Clinton")).ToList();
-            //    ViewBag.VoteLinks = db.FeedLinks.OrderByDescending(x => x.Votes).ThenByDescending(x => x.FeedLinkTime).Where(x => x.Votes >= 3).Where(x => x.FeedLinkTime >= DateTime.Today).Where(x => x.FeedLinkTitle.Contains("Hillary") || x.FeedLinkTitle.Contains("Clinton")).ToList();
-            //    var thisCategory = db.Categories.FirstOrDefault(x => x.CategorySlug == slug);
-
-            //    return View(thisCategory);
-
-            //}
-            //else
-            //{
-            //    ViewBag.TempLinks = db.FeedLinks.OrderByDescending(x => x.FeedLinkTime).Where(x => x.FeedLinkTime >= DateTime.Today).ToList();
-            //    return View();
-
-            //}
-
 
         }
 
@@ -116,5 +88,6 @@ namespace PoliticList.Controllers
             }
             return "true";
         }
+
     }
 }
